@@ -771,9 +771,9 @@
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
     .reveal.visible {
       opacity: 1;
@@ -1233,7 +1233,7 @@
         </div>
         <div>
           <div class="contact-item-label">Email</div>
-          <div class="contact-item-val"><span class="__cf_email__" >saikarthiknagabhairava18@gmail.com</span></div>
+          <div class="contact-item-val"><span class="__cf_email__" ><span class="__cf_email__" >saikarthiknagabhairava18@gmail.com</span></span></div>
         </div>
       </a>
 
@@ -1259,42 +1259,44 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  function animateCount(el, target) {
-  if (el._counted) return;
-  el._counted = true;
-  const suffix = String(el.dataset.count).includes('+') ? '+' : '';
-  let current = 0;
-  const step = Math.ceil(target / 50);
-  const timer = setInterval(() => {
-    current = Math.min(current + step, target);
-    el.textContent = current + (current >= target ? suffix : '');
-    if (current >= target) clearInterval(timer);
-  }, 30);
-}
-
-  function revealElement(el) {
-    el.classList.add('visible');
-    el.querySelectorAll('.skill-fill').forEach(bar => {
-      bar.style.width = bar.dataset.w + '%';
-    });
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.reveal').forEach(el => revealElement(el));
-    document.querySelectorAll('[data-count]').forEach(el => animateCount(el, +el.dataset.count));
+  // ── Skill bars ──
+  document.querySelectorAll('.skill-fill').forEach(bar => {
+    bar.style.width = bar.dataset.w + '%';
   });
 
+  // ── Counters ──
+  function animateCount(el) {
+    if (el._counted) return;
+    el._counted = true;
+    const raw    = String(el.dataset.count);
+    const target = parseInt(raw);
+    const suffix = raw.includes('+') ? '+' : '';
+    let current  = 0;
+    const step   = Math.ceil(target / 50);
+    const timer  = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (current >= target ? suffix : '');
+      if (current >= target) clearInterval(timer);
+    }, 30);
+  }
+  setTimeout(() => {
+    document.querySelectorAll('[data-count]').forEach(el => animateCount(el));
+  }, 300);
+
+  // ── Nav scroll ──
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
+  // ── Mobile menu ──
   const toggle = document.getElementById('nav-toggle');
   const links  = document.getElementById('nav-links');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-  const roles = ['Data Analyst', 'Data Engineer', 'Data Scientist', 'ML Engineer'];
+  // ── Typing animation ──
+  const roles    = ['Data Analyst', 'Data Engineer', 'Data Scientist', 'ML Engineer'];
   const typingEl = document.getElementById('typing-el');
   let ri = 0, ci = 0, deleting = false;
   function type() {
@@ -1308,6 +1310,7 @@
     }
     setTimeout(type, deleting ? 60 : 110);
   }
-  type();</script>
+  type();
+</script>
 </body>
 </html>
