@@ -1260,16 +1260,17 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   function animateCount(el, target) {
-    if (el._counted) return;
-    el._counted = true;
-    let current = 0;
-    const step = Math.ceil(target / 50);
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = current;
-      if (current >= target) clearInterval(timer);
-    }, 30);
-  }
+  if (el._counted) return;
+  el._counted = true;
+  const suffix = String(el.dataset.count).includes('+') ? '+' : '';
+  let current = 0;
+  const step = Math.ceil(target / 50);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current + (current >= target ? suffix : '');
+    if (current >= target) clearInterval(timer);
+  }, 30);
+}
 
   function revealElement(el) {
     el.classList.add('visible');
