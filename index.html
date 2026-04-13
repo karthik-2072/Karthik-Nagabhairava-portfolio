@@ -897,14 +897,7 @@
     </div>
   </div>
 
-  <div class="about-grid">
-    <div class="about-photo-col reveal">
-      <img src="images/karthikpic.jpg" alt="Sai Karthik" class="about-photo"/>
-      <div class="about-photo-tag">
-        <strong>3+</strong>
-        <span>Years in Data</span>
-      </div>
-    </div>
+  <div class="about-grid" style="grid-template-columns: 1fr;">
 
     <div class="about-text">
       <p class="reveal">
@@ -1256,13 +1249,13 @@
         </div>
       </a>
 
-      <a href="mailto:sai.karthik@example.com" class="contact-item reveal reveal-delay-3">
+      <a href="/cdn-cgi/l/email-protection#fb889a92d5909a898f939290bb9e839a968b979ed5989496" class="contact-item reveal reveal-delay-3">
         <div class="contact-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <div>
           <div class="contact-item-label">Email</div>
-          <div class="contact-item-val">saikarthik.n@outlook.com</div>
+          <div class="contact-item-val"><span class="__cf_email__" data-cfemail="fb889a92909a898f939290d595bb948e8f97949490d5989496">[email&#160;protected]</span></div>
         </div>
       </a>
 
@@ -1287,7 +1280,7 @@
 </footer>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* ── Year ── */
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1350,14 +1343,4 @@
 
   const counters = document.querySelectorAll('[data-count]');
   const countObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateCount(e.target, +e.target.dataset.count);
-        countObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(c => countObs.observe(c));
-</script>
-</body>
-</html>
+    entries.fo
